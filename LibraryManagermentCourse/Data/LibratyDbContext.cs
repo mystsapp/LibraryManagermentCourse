@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace LibraryManagermentCourse.Data
 {
-    public class LibratyDbContext : DbContext
+    public class LibraryDbContext : DbContext
     {
-        public LibratyDbContext(DbContextOptions<LibratyDbContext> options) : base(options)
+        public LibraryDbContext(DbContextOptions<LibraryDbContext> options) : base(options)
         {
 
         }
