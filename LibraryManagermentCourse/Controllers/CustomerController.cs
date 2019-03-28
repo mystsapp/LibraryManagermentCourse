@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LibraryManagermentCourse.Data.Interfaces;
+using LibraryManagermentCourse.Data.Model;
 using LibraryManagermentCourse.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -40,6 +41,42 @@ namespace LibraryManagermentCourse.Controllers
             }
 
             return View(customVM);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var customer = _customerRepository.GetById(id);
+
+            _customerRepository.Delete(customer);
+
+            return RedirectToAction("List");
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Customer customer)
+        {
+            _customerRepository.Create(customer);
+
+            return RedirectToAction("List");
+        }
+
+        public IActionResult Update(int id)
+        {
+            var customer = _customerRepository.GetById(id);
+            return View(customer);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Customer customer)
+        {
+            _customerRepository.Update(customer);
+
+            return RedirectToAction("List");
         }
     }
 }
