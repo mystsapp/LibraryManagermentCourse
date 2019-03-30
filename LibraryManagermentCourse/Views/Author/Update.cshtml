@@ -1,30 +1,24 @@
-﻿@model Customer
+﻿@model LibraryManagermentCourse.Data.Model.Author
 
-<h3 class="col-md-offset-2">Create new customer</h3>
-
+<h3 class="col-md-offset-2">Create Author @Model.Name</h3>
+<hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-controller="Customer" asp-action="Create" method="post" class="form-horizontal" role="form">
-
+        <form asp-action="Update">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+            @Html.HiddenFor(m => Model.AuthorId)
             <div class="form-group">
-
                 <label asp-for="Name" class="control-label"></label>
-
-                <input asp-for="Name" class="form-control" placeholder="Enter customers name" />
+                <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
-
             </div>
             <div class="form-group">
                 <div class="btn-group col-md-offset-2 col-md-6">
-                    <input class="btn btn-default" type="submit" value="Return" asp-controller="Customer" asp-action="List" />
-                    <input class="btn btn-success" type="submit" value="Create" />
+                    <input class="btn btn-default" type="submit" value="Return" asp-controller="Author" asp-action="List" />
+                    <input class="btn btn-success" type="submit" value="Update" />
                 </div>
             </div>
         </form>
     </div>
 </div>
-
-
 
