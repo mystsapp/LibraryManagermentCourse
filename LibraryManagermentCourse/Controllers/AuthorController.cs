@@ -29,6 +29,7 @@ namespace LibraryManagermentCourse.Controllers
 
         public IActionResult Update(int id)
         {
+
             var author = _authorRepository.GetById(id);
 
             if (author == null) return NotFound();
@@ -39,6 +40,10 @@ namespace LibraryManagermentCourse.Controllers
         [HttpPost]
         public IActionResult Update(Author author)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(author);
+            }
             _authorRepository.Update(author);
 
             return RedirectToAction("List");
@@ -52,6 +57,10 @@ namespace LibraryManagermentCourse.Controllers
         [HttpPost]
         public IActionResult Create(Author author)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(author);
+            }
             _authorRepository.Create(author);
             return RedirectToAction("List");
         }
