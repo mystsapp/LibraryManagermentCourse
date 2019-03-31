@@ -14,6 +14,6 @@ namespace LibraryManagermentCourse.Data.Model
         public int AuthorId { get; set; }
 
         public virtual Customer Borrower { get; set; }
-        public int BorrowId { get; set; }
+        public int BorrowerId { get; set; }
     }
 }

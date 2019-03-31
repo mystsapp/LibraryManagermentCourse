@@ -20,6 +20,7 @@ namespace LibraryManagermentCourse.Controllers
             _authorRepository = authorRepository;
         }
 
+        [Route("Book")]
         public IActionResult List(int? authorId, int? borrowId)
         {
             if(authorId == null && borrowId == null)
@@ -42,7 +43,7 @@ namespace LibraryManagermentCourse.Controllers
             else if (borrowId != null)
             {
                 //filter by borrowId
-                var books = _bookRepository.FindWithAuthorAndBorrower(book => book.BorrowId == borrowId);
+                var books = _bookRepository.FindWithAuthorAndBorrower(book => book.BorrowerId == borrowId);
                 // check borrower book
                 return CheckBook(books);
             }
@@ -74,7 +75,7 @@ namespace LibraryManagermentCourse.Controllers
         public IActionResult Create(BookViewModel bookViewModel)
         {
             _bookRepository.Create(bookViewModel.Book);
-            return View("List");
+            return RedirectToAction("List");
         }
 
         public IActionResult Update(int id)

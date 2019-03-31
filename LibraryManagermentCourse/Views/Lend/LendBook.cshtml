@@ -1,0 +1,33 @@
+﻿@model LibraryManagermentCourse.Models.LendViewModel
+
+<h3 class="col-md-offset-2">Lend a book</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="LendBook">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(m => Model.Book.BookId)
+            <div class="form-group">
+                <label asp-for="Book.Borrower" class="col-md-2 control-label"></label>
+                @Html.DropDownListFor(m => m.Book.BorrowerId,
+                                            new SelectList(Model.Customers.Select(x => new { Value = x.CustomerId, Text = x.Name}), "Value", "Text"), 
+                                            "Select Customer",
+                                            htmlAttributes: new { @class="form-control border-input"})
+
+                @*@Html.DropDownListFor(m => m.Book.BorrowId,
+                                             new SelectList(Model.Customers.Select(x => new { Value = x.CustomerId, Text = x.Name }), "Value", "Text"),
+                                             "Select Customer",
+                                             htmlAttributes: new { @class = "form-control border-input" })*@
+            </div>
+
+            <div class="form-group">
+                <div class="btn-group col-md-offset-2 col-md-6">
+                    <input class="btn btn-default" type="submit" value="Return" asp-controller="Lend" asp-action="List" />
+                    <input class="btn btn-success" type="submit" value="Lend" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

@@ -34,7 +34,9 @@ namespace LibraryManagermentCourse
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<LibraryDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<LibraryDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<LibraryDbContext>(options => options.UseInMemoryDatabase("LibraryContext"));
+
 
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IAuthorRepository, AuthorRepository>();
@@ -64,7 +66,7 @@ namespace LibraryManagermentCourse
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
             
-            // DbInitializer.Seed(app); seed data
+             DbInitializer.Seed(app); //seed data
         }
     }
 }

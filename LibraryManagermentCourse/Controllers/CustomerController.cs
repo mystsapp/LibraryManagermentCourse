@@ -36,7 +36,7 @@ namespace LibraryManagermentCourse.Controllers
                 customVM.Add(new CustomerViewModel
                 {
                     Customer = customer,
-                    BootCount = _bookRepository.Count(a => a.BorrowId == customer.CustomerId)
+                    BootCount = _bookRepository.Count(a => a.BorrowerId == customer.CustomerId)
                 });
             }
 
