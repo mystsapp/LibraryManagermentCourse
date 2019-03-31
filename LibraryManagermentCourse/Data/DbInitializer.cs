@@ -1,4 +1,5 @@
-﻿using LibraryManagermentCourse.Data.Model;
+﻿using LibraryManagement.Data;
+using LibraryManagermentCourse.Data.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System;
