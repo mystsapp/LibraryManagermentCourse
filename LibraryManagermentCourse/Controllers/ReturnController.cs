@@ -17,10 +17,12 @@ namespace LibraryManagermentCourse.Controllers
             _bookRepository = bookRepository;
             _customerRepository = customerRepository;
         }
+
+        [Route("Return")]
         public IActionResult List()
         {
             // load all borrowed books
-            var borrowedBooks = _bookRepository.FindWithAuthorAndBorrower(x => x.BorrowerId == 0);
+            var borrowedBooks = _bookRepository.FindWithAuthorAndBorrower(x => x.BorrowerId != 0);
 
             // check the books collection
             if (borrowedBooks == null || borrowedBooks.Count() == 0)
@@ -29,10 +31,10 @@ namespace LibraryManagermentCourse.Controllers
             return View(borrowedBooks);
         }
 
-        public IActionResult ReturnBook(int id)
+        public IActionResult ReturnABook(int bookId)
         {
             // load the current book
-            var book = _bookRepository.GetById(id);
+            var book = _bookRepository.GetById(bookId);
 
             // remove borrower
             book.Borrower = null;
